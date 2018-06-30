@@ -1,19 +1,18 @@
 package com.example.simpleProj.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Kamarou_S on 29.06.2018.
  */
 @Entity
+@Table(name = "role")
 public class Role {
     private long idRole;
     private String roleName;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idRole", nullable = false)
     public long getIdRole() {
         return idRole;

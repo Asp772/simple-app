@@ -1,14 +1,12 @@
 package com.example.simpleProj.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Kamarou_S on 29.06.2018.
  */
 @Entity
+@Table(name = "user")
 public class User {
     private long idUser;
     private String email;
@@ -16,6 +14,7 @@ public class User {
     private String userPass;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idUser", nullable = false)
     public long getIdUser() {
         return idUser;
