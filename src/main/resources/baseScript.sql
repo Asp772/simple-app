@@ -1,4 +1,4 @@
-drop database if exists `simpledb`;
+/*drop database if exists `simpledb`;*/
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -8,15 +8,17 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Table `simpledb`.`user`
 -- -----------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS `simpledb` DEFAULT CHARACTER SET utf8 ;
-USE `simpledb` ;
+/*CREATE DATABASE IF NOT EXISTS `simpledb` DEFAULT CHARACTER SET utf8 ;
+USE `simpledb` ;*/
+
+use sql7245411;
 
 -- -----------------------------------------------------
--- Table `simpledb`.`user`
+-- Table `user`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `simpledb`.`user` ;
+DROP TABLE IF EXISTS `user` ;
 
-CREATE TABLE IF NOT EXISTS `simpledb`.`user`(
+CREATE TABLE IF NOT EXISTS `user`(
   `idUser` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) DEFAULT NULL,
   `userName` VARCHAR(255) NOT NULL,
@@ -33,11 +35,11 @@ CREATE TABLE IF NOT EXISTS `simpledb`.`user`(
   DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
--- Table `simpledb`.`role`
+-- Table `role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `simpledb`.`role` ;
+DROP TABLE IF EXISTS `role` ;
 
-CREATE TABLE IF NOT EXISTS `simpledb`.`role`(
+CREATE TABLE IF NOT EXISTS `role`(
   `idRole` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `roleName` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idRole`)
@@ -46,11 +48,11 @@ CREATE TABLE IF NOT EXISTS `simpledb`.`role`(
   DEFAULT CHARACTER SET = utf8;
 
 -- -----------------------------------------------------
--- Table `simpledb`.`image`
+-- Table `image`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `simpledb`.`image` ;
+DROP TABLE IF EXISTS `image` ;
 
-CREATE TABLE IF NOT EXISTS `simpledb`.`image` (
+CREATE TABLE IF NOT EXISTS `image` (
   `idImage` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `imageUrl` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idImage`))
