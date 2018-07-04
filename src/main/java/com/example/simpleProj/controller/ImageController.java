@@ -45,11 +45,9 @@ public class ImageController {
 
     @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Image>> getAll() {
-
         List<Image> list = imageService.findAll();
 
         return new ResponseEntity<List<Image>>(list, HttpStatus.OK);
-
     }
 
 }
