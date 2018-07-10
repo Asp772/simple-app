@@ -1,6 +1,7 @@
 package com.example.simpleProj.controller;
 
 import com.example.simpleProj.model.Image;
+import com.example.simpleProj.service.CloudService;
 import com.example.simpleProj.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
+/*    @Autowired
+    private CloudService cloudService;*/
+
     @PostMapping(value = "saveImage", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> saveObj(@RequestParam("file") MultipartFile file, @RequestParam("filename") String filename) throws IOException {
        /* try {
@@ -43,6 +47,11 @@ public class ImageController {
         return new ResponseEntity<>("good", HttpStatus.CREATED);
     }
 
+    @GetMapping("get")
+    public ResponseEntity<Void> getMethod() {
+        System.out.println(cloudService.testMethod());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
     @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Image>> getAll() {
         List<Image> list = imageService.findAll();
