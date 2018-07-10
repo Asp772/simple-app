@@ -24,8 +24,7 @@ public class ImageController {
     private ImageService imageService;
 
     @PostMapping(value = "saveImage", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> saveObj(@RequestParam("file") MultipartFile file, @RequestParam("filename") String filename) throws IOException
-    {
+    public ResponseEntity<String> saveObj(@RequestParam("file") MultipartFile file, @RequestParam("filename") String filename) throws IOException {
        /* try {
             String imgURL = serviceFactory.getAwsService().putObject(convert(file), filename);
 
@@ -43,4 +42,12 @@ public class ImageController {
         }*/
         return new ResponseEntity<>("good", HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Image>> getAll() {
+        List<Image> list = imageService.findAll();
+
+        return new ResponseEntity<List<Image>>(list, HttpStatus.OK);
+    }
+
 }
