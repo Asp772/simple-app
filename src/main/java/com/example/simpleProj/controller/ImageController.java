@@ -1,5 +1,6 @@
 package com.example.simpleProj.controller;
 
+import com.example.simpleProj.exception.CloudServiceUploadingException;
 import com.example.simpleProj.model.Image;
 import com.example.simpleProj.service.CloudService;
 import com.example.simpleProj.service.ImageService;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -24,39 +27,23 @@ public class ImageController {
     @Autowired
     private ImageService imageService;
 
-/*    @Autowired
-    private CloudService cloudService;*/
+    @Autowired
+    private CloudService cloudService;
 
-    @PostMapping(value = "saveImage", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<String> saveObj(@RequestParam("file") MultipartFile file, @RequestParam("filename") String filename) throws IOException {
-       /* try {
-            String imgURL = serviceFactory.getAwsService().putObject(convert(file), filename);
-
-            String resultURL=serviceFactory.getAwsService().getAWSUrl()+"/"+serviceFactory.getAwsService().getAWSBucketName()+"/"+imgURL;
-
-
-
-            return new ResponseEntity<>(gson.toJson(user), HttpStatus.CREATED);
-        }catch (IOException e) {
+    @PostMapping(value = "saveFile", produces = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> saveObj(@RequestParam("file") MultipartFile file) {
+        try {
+            String result = cloudService.uploadFile(file);
+            return new ResponseEntity<>(result, HttpStatus.CREATED);
+        } catch (CloudServiceUploadingException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
-
-
-        }catch (AmazonS3Exception e) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }*/
-        return new ResponseEntity<>("good", HttpStatus.CREATED);
+        }
     }
 
-    @GetMapping("get")
-    public ResponseEntity<Void> getMethod() {
-        System.out.println(cloudService.testMethod());
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
     @GetMapping(value = "getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Image>> getAll() {
         List<Image> list = imageService.findAll();
 
         return new ResponseEntity<List<Image>>(list, HttpStatus.OK);
     }
-
 }
