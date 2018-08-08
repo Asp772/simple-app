@@ -46,7 +46,24 @@ import java.util.Set;
  */
 @Service
 public class VKServiceImpl implements MusicService {
-    private final Environment environment;
+    @Override
+    public void logon() {
+
+    }
+
+    @Override
+    public List<Object> getList() {
+        return null;
+    }
+
+    @Override
+    public List<Object> getQueryResult(String query, int offset) throws MusicSourceAccessException {
+        return null;
+    }
+
+
+
+    /*private final Environment environment;
     private final String cookieNeeded;
 
     private String getLoginVK() {
@@ -98,7 +115,7 @@ public class VKServiceImpl implements MusicService {
 
     @Override
     public void logon() {
-        /*System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
+        *//*System.setProperty("webdriver.chrome.driver", "D:\\chromedriver_win32\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         String baseUrl = "https://vk.com/im";
@@ -189,7 +206,7 @@ public class VKServiceImpl implements MusicService {
                 songList.add(new Song(songTitle.toString(), el.getElementsByAttributeValue("type", "hidden").get(0).val()));
             }
         }
-*/
+*//*
     }
 
     @Override
@@ -427,5 +444,5 @@ public class VKServiceImpl implements MusicService {
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 }

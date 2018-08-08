@@ -24,4 +24,8 @@ public class TempController {
         return new ResponseEntity<>(musicService.getList(), HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<String> testMethod(){
+        return new ResponseEntity<String>("testMethod works",HttpStatus.OK);
+    }
 }
